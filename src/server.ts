@@ -1,5 +1,5 @@
 import express, {Express, Request, Response} from "express";
-import itemRouter from "./routes/users.routes";
+import catRouter from "./routes/cats.routes";
 
 import { connectDB } from "./utils/database";
 import { logger } from "./middlewares/logger";
@@ -17,7 +17,7 @@ connectDB();
 app.use(express.json());//habilita el parseo de archivos json
 app.use(logger)
 //Rutas
-app.use("/users", itemRouter);
+app.use("/cats", catRouter);
 
 //Llamo al puerto
 app.listen(port, ()=>{
