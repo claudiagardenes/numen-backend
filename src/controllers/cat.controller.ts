@@ -1,9 +1,5 @@
 import {Request, Response} from "express"; 
 import { Cat } from "../models/Cats";
-import axios from 'axios';
-
-
-
 
 export const getAllCats=async(req:Request, res:Response)=>{
     try{
@@ -38,28 +34,7 @@ export const addCat=async(req: Request, res:Response)=>{
         const {raza, tamaño, peso, caracter, clima}= req.body;
         const newCat= await Cat.create({raza, tamaño, peso, caracter, clima});
         res.status(201).json({newCat, statusCode:201, msj:'Nuevo Gato agregado'});
-        // const sendConfirmationEmail = async (email: string, name: string) => {
-        //     const apiKey = 'process.env.API_KEY'
-        //     const apiUrl = 'https://api.brevo.com/v3/smtp/email';
-        //     const emailData = {
-        //       sender: { name: 'Claudia', email: 'claudiaagds47@gmail.com' },
-        //       to: [{ email, name }],
-        //       subject: 'Confirmación de Registro',
-        //       htmlContent: `<html><body><h1>Hola ${name},</h1><p>Gracias por registrarte. Por favor, confirma tu registro haciendo clic en el siguiente enlace:</p><a href="https://tu_dominio.com/confirmar?email=${email}">Confirmar Registro</a></body></html>`
-        //     };
-        //     try {
-        //       const response = await axios.post(apiUrl, emailData, {
-        //         headers: {
-        //           'Content-Type': 'application/json',
-        //           'api-key': apiKey
-        //         }
-        //       });
-        //       console.log('Correo enviado:', response.data);
-        //     } catch (error) {
-        //       console.error('Error al enviar el correo:', error);
-        //     }
-        //   };          
-        //    sendConfirmationEmail(newCat.email, newCat.nombre);
+        
         
     }catch(error){
         if(error instanceof Error){

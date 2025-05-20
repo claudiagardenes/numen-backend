@@ -26,6 +26,7 @@
     "@types/bcryptjs": "^3.0.0",
     "@types/jsonwebtoken": "^9.0.9",
     "axios": "^1.8.4",
+    "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
     "brevo": "^1.0.0",
     "dotenv": "^16.4.7",

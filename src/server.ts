@@ -3,7 +3,7 @@ import catRouter from "./routes/cats.routes";
 
 import { connectDB } from "./utils/database";
 import { logger } from "./middlewares/logger";
-
+import authRouter from "./routes/auth.routes";
 
 //defino servidor
 const app= express();
@@ -17,7 +17,8 @@ connectDB();
 app.use(express.json());//habilita el parseo de archivos json
 app.use(logger)
 //Rutas
-app.use("/cats", catRouter);
+app.use("/api/cats", catRouter);
+app.use("/api/auth", authRouter )
 
 //Llamo al puerto
 app.listen(port, ()=>{
