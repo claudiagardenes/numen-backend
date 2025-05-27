@@ -3,13 +3,13 @@ import { getAllCats, getCatById, addCat, updateCat, deleteCat } from "../control
 
 import { handleValidation } from "../middlewares/handleValidation";
 import { validateCat } from "../middlewares/validateCat";
-import { verifyToken } from "../middlewares/authMiddlewares";
+
 
 
 
 const router= Router();//hago una instancia de ruteado
 
-router.get("/", verifyToken, getAllCats);
+router.get("/",  getAllCats);
 router.get("/:id", getCatById);
 router.post("/", validateCat,handleValidation, addCat);
 router.put("/:id", validateCat, handleValidation, updateCat);

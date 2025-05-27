@@ -4,14 +4,21 @@ import axios from 'axios';
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export const register = async (req:Request, res: Response)=>{
+export const register = async (req:Request, res: Response) =>{
     try{
         const {username, email, password}= req.body;
+       
+        const existingUser= await User.findOne({email}
+        );
+        if(existingUser){
+           res.status(400).json({statusCode:400, msj:"este email ya esta en uso"})
+        }
         const usuarioNuevo = new User({username, email, password});
         await usuarioNuevo.save(); //operacion de guardado en base de datos
         res.status(201).json({statusCode:201, msj:"usuario registrado exitosamente"})
-         const sendConfirmationEmail = async (email: string, usarname: string) => {
-                     const apiKey = 'process.env.API_KEY || ""'
+        
+        const sendConfirmationEmail = async (email: string, username: string) => {
+                     const apiKey = process.env.API_KEY || ""
                      const apiUrl = 'https://api.brevo.com/v3/smtp/email';
                      const emailData = {
                        sender: { name: 'Claudia', email: 'claudiaagds47@gmail.com' },
@@ -34,7 +41,7 @@ export const register = async (req:Request, res: Response)=>{
                     sendConfirmationEmail(usuarioNuevo.email, usuarioNuevo.username);
         
     }catch(error){
-        res.status(500).json({statusCode: 500, msj:"error al resgistrar usuario"})
+        res.status(500).json({statusCode: 500, msj:"error al registrar usuario"})
         console.log(error)
     }
 }

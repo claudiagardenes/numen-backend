@@ -7,13 +7,6 @@ export const validateCat=[
     body("peso").notEmpty().withMessage("el peso del gato debe ser obligatorio").isFloat({min:1}).withMessage("debe tener un minimo de 1 kg ").isInt().withMessage("ingrese un numero entero"),
     body("caracter").notEmpty().withMessage("el caracter es obligatorio").isString().withMessage("el caracter debe tener formato de cadena de texto"),
     body("clima").notEmpty().withMessage("el clima es obligatorio").isString().withMessage("el clima debe  tener un formato de cadena de texto"),
-    // body("email").notEmpty().withMessage("el mail es obligatorio").isString().withMessage("debe tener formato de texto e incluir caracteres como @").custom(async(email)=>{
-    //     const existingUser= await User.findOne({email}
-    //     );
-    //     if(existingUser){
-    //         throw new Error('este email ya esta en uso')
-    //     }
-        
-    // })
- 
+   
 ]
+
